@@ -1,0 +1,5 @@
+INFO:root:[creating file 'file1']
+INFO:root:[reading file 'file1']
+INFO:root:[renaming 'file1' to 'file2']
+INFO:root:[renaming 'file2' back to 'file1']
+INFO:root:deleting file file1

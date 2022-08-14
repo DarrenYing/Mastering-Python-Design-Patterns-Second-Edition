@@ -1,4 +1,5 @@
-from rx import Observable, Observer
+from rx import create
+
 
 def get_quotes():
     import contextlib, io
@@ -9,15 +10,16 @@ def get_quotes():
     quotes = zen.getvalue().split('\n')[1:]
     return quotes
 
-def push_quotes(obs):
 
+def push_quotes(obs, scheduler):
     quotes = get_quotes()
     for q in quotes:
         if q:  # skip empty
             obs.on_next(q)
     obs.on_completed()
 
-class ZenQuotesObserver(Observer):
+
+class ZenQuotesObserver:
 
     def on_next(self, value):
         print(f"Received: {value}")
@@ -28,6 +30,7 @@ class ZenQuotesObserver(Observer):
     def on_error(self, error):
         print(f"Error Occurred: {error}")
 
-source = Observable.create(push_quotes)
 
-source.subscribe(ZenQuotesObserver())
+source = create(push_quotes)
+
+source.subscribe(ZenQuotesObserver())  # 订阅之后，push_quotes函数才会执行

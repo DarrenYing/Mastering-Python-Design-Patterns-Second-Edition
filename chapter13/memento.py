@@ -1,5 +1,6 @@
 import pickle
 
+
 class Quote:
 
     def __init__(self, text, author):
@@ -8,21 +9,22 @@ class Quote:
 
     def save_state(self):
         current_state = pickle.dumps(self.__dict__)
-        
+
         return current_state
 
     def restore_state(self, memento):
         previous_state = pickle.loads(memento)
-        
+
         self.__dict__.clear()
         self.__dict__.update(previous_state)
 
     def __str__(self):
         return f'{self.text} - By {self.author}.'
-    
+
+
 def main():
     print('Quote 1')
-    q1 = Quote("A room without books is like a body without a soul.", 
+    q1 = Quote("A room without books is like a body without a soul.",
                'Unknown author')
     print(f'\nOriginal version:\n{q1}')
     q1_mem = q1.save_state()
@@ -37,8 +39,9 @@ def main():
 
     print()
     print('Quote 2')
-    q2 = Quote("To be you in a world that is constantly trying to make you be something else is the greatest accomplishment.", 
-               'Ralph Waldo Emerson')
+    q2 = Quote(
+        "To be you in a world that is constantly trying to make you be something else is the greatest accomplishment.",
+        'Ralph Waldo Emerson')
     print(f'\nOriginal version:\n{q2}')
     q2_mem1 = q2.save_state()
 
@@ -46,14 +49,14 @@ def main():
     q2.text = "To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment."
     print(f'\nWe fixed the text:\n{q2}')
     q2_mem2 = q2.save_state()
-    
+
     q2.text = "To be yourself when the world is constantly trying to make you something else is the greatest accomplishment."
     print(f'\nWe fixed the text again:\n{q2}')
-    
+
     # Restoring previous state (Undo)
     q2.restore_state(q2_mem2)
     print(f'\nWe had to restore the 2nd version, the correct one:\n{q2}')
 
+
 if __name__ == "__main__":
     main()
-

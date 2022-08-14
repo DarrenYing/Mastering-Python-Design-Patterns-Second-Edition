@@ -1,4 +1,3 @@
-
 # Frog game
 
 class Frog:
@@ -13,12 +12,14 @@ class Frog:
         msg = f'{self} the Frog encounters {obstacle} and {act}!'
         print(msg)
 
+
 class Bug:
     def __str__(self):
         return 'a bug'
 
     def action(self):
         return 'eats it'
+
 
 class FrogWorld:
     def __init__(self, name):
@@ -49,12 +50,14 @@ class Wizard:
         msg = f'{self} the Wizard battles against {obstacle} and {act}!'
         print(msg)
 
+
 class Ork:
     def __str__(self):
         return 'an evil ork'
 
     def action(self):
         return 'kills it'
+
 
 class WizardWorld:
     def __init__(self, name):
@@ -70,6 +73,7 @@ class WizardWorld:
     def make_obstacle(self):
         return Ork()
 
+
 # Game environment
 class GameEnvironment:
     def __init__(self, factory):
@@ -79,14 +83,16 @@ class GameEnvironment:
     def play(self):
         self.hero.interact_with(self.obstacle)
 
+
 def validate_age(name):
     try:
         age = input(f'Welcome {name}. How old are you? ')
         age = int(age)
     except ValueError as err:
         print(f"Age {age} is invalid, please try again...")
-        return (False, age)
-    return (True, age)
+        return False, age
+    return True, age
+
 
 def main():
     name = input("Hello. What's your name? ")

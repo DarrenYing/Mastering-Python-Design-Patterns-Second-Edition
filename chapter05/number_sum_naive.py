@@ -1,7 +1,7 @@
 
 def number_sum(n): 
-    '''Returns the sum of the first n numbers''' 
-    assert(n >= 0), 'n must be >= 0' 
+    '''Returns the sum of the first n numbers'''
+    assert(n >= 0), 'n must be >= 0'
     
     if n == 0:
         return 0
@@ -10,5 +10,5 @@ def number_sum(n):
  
 if __name__ == '__main__': 
     from timeit import Timer 
-    t = Timer('number_sum(30)', 'from __main__ import number_sum')
+    t = Timer('number_sum(30)', 'from __main__ import number_sum')  # 会调用100w次
     print('Time: ', t.timeit())
